@@ -1,0 +1,19 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# Local data files
+data/
+
+# Model
+models/
+*.pkl
+*.pt
+*.pth
+
+# virtual environment
+.venv/
+.env

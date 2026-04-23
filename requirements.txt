@@ -1,0 +1,32 @@
+# 기초 데이터 분석 및 수치 연산
+pandas
+numpy
+openpyxl  # 엑셀 데이터 로드용
+matplotlib
+scipy
+
+
+# 머신러닝 및 전처리
+scikit-learn
+imbalanced-learn  # SMOTE 등 데이터 불균형 처리
+
+#트리 기반 모델
+xgboost>=1.7.0
+lightgbm>=3.3.0
+catboost>=1.2.0
+
+# 설명 가능한 AI 
+# shap>=0.41.0
+
+# 시각화
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# 웹 대시보드 및 시연용 
+# streamlit>=1.22.0
+
+# API 서버 구축 (필요 시)
+# fastapi
+# uvicorn
+
+koreanize-matplotlib
