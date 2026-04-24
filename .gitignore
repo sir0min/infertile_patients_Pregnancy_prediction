@@ -4,6 +4,7 @@ __pycache__/
 
 # Jupyter Notebook
 .ipynb_checkpoints/
+.ipynb
 
 # Local data files
 data/
