@@ -1,0 +1,97 @@
+Device: cuda
+============================================================
+ IVF 임신 성공 예측 - Solution v9 (Feature Selection)
+============================================================
+
+[1] 데이터 로드 및 전처리
+
+[2] 피처 엔지니어링 v9 (노이즈/중복 제거)
+  피처 수: 103개 (v7: 122개 -> v9: 103개)
+
+[3] TabNet 피처 준비
+  카테고리: 67개  연속형: 36개
+
+[4] 트리 모델 학습 (9개)
+  LGB_s42  OOF AUC: 0.73843
+  XGB_s42  OOF AUC: 0.73941
+  CAT_s42  OOF AUC: 0.73955
+  LGB_s777  OOF AUC: 0.73882
+  XGB_s777  OOF AUC: 0.73940
+  CAT_s777  OOF AUC: 0.73956
+  LGB_s2024  OOF AUC: 0.73855
+  XGB_s2024  OOF AUC: 0.73946
+  CAT_s2024  OOF AUC: 0.73969
+
+  트리 단순 평균 OOF AUC: 0.74011
+
+[5] TabNet 학습 (3 seeds, GPU)
+
+Early stopping occurred at epoch 174 with best_epoch = 134 and best_val_auc = 0.73136
+
+Early stopping occurred at epoch 245 with best_epoch = 205 and best_val_auc = 0.73411
+
+Early stopping occurred at epoch 212 with best_epoch = 172 and best_val_auc = 0.73356
+
+Early stopping occurred at epoch 143 with best_epoch = 103 and best_val_auc = 0.73364
+
+Early stopping occurred at epoch 186 with best_epoch = 146 and best_val_auc = 0.73161
+  TAB_s42  OOF AUC: 0.73284
+
+Early stopping occurred at epoch 205 with best_epoch = 165 and best_val_auc = 0.73173
+
+Early stopping occurred at epoch 149 with best_epoch = 109 and best_val_auc = 0.7334
+
+Early stopping occurred at epoch 252 with best_epoch = 212 and best_val_auc = 0.72959
+
+Early stopping occurred at epoch 225 with best_epoch = 185 and best_val_auc = 0.73441
+
+Early stopping occurred at epoch 175 with best_epoch = 135 and best_val_auc = 0.73353
+  TAB_s777  OOF AUC: 0.73250
+
+Early stopping occurred at epoch 221 with best_epoch = 181 and best_val_auc = 0.7363
+
+Early stopping occurred at epoch 155 with best_epoch = 115 and best_val_auc = 0.73348
+
+Early stopping occurred at epoch 153 with best_epoch = 113 and best_val_auc = 0.73382
+Stop training because you reached max_epochs = 300 with best_epoch = 279 and best_val_auc = 0.73147
+
+Early stopping occurred at epoch 221 with best_epoch = 181 and best_val_auc = 0.73127
+  TAB_s2024  OOF AUC: 0.73325
+  TAB 평균 OOF AUC: 0.73662
+
+[6] 4-class 최적 가중치 탐색
+  최적 가중치: LGB=0.127 XGB=0.250 CAT=0.526 TAB=0.097
+  4-class 블렌드 OOF AUC: 0.74022
+
+[7] Meta-LR 학습
+  Meta-LR AUC: 0.73998
+
+[8] 최종 블렌딩
+  최종 블렌딩: Opt=0.952 LR=0.048  AUC=0.74023
+
+============================================================
+  성능 비교
+============================================================
+  [v7 최고] 0.74027                        0.74027  ████████████████████  ★
+  스태킹 최종 (v9)                            0.74023  ███████████████████
+  4-class 블렌드                            0.74022  ███████████████████
+  트리 단순 평균                               0.74011  ███████████████████
+  Meta-LR                                0.73998  ███████████████████
+  CAT_s2024                              0.73969  ███████████████████
+  CAT_s777                               0.73956  ███████████████████
+  CAT_s42                                0.73955  ███████████████████
+  XGB_s2024                              0.73946  ███████████████████
+  XGB_s42                                0.73941  ███████████████████
+  XGB_s777                               0.73940  ███████████████████
+  LGB_s777                               0.73882  ██████████████████
+  LGB_s2024                              0.73855  ██████████████████
+  LGB_s42                                0.73843  ██████████████████
+  TAB 평균                                 0.73662  ████████████████
+  TAB_s2024                              0.73325  █████████████
+  TAB_s42                                0.73284  ████████████
+  TAB_s777                               0.73250  ████████████
+============================================================
+
+  제출 파일: submission_v9.csv
+  예측 범위: [0.0033, 0.7406]
+============================================================

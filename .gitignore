@@ -1,0 +1,49 @@
+# 원본 대용량 데이터
+data/raw/train.csv
+data/raw/test.csv
+
+# 가상환경
+.venv/
+venv/
+env/
+
+# Python 캐시
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Jupyter 임시 파일
+.ipynb_checkpoints/
+
+# 모델 파일
+models/
+*.pkl
+*.joblib
+*.cbm
+*.lgb
+
+# CatBoost 자동 생성 파일
+catboost_info/
+
+# Claude Code 개인 설정
+.claude/
+
+# 에러 로그
+*_err.txt
+
+# OS 관련
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.idea/
+.vscode/
+*.code-workspace
+
+# 환경 변수
+.env
+*.env
+claude.md
+CLAUDE.md

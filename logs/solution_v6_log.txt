@@ -1,0 +1,78 @@
+Device: cuda
+============================================================
+ IVF 임신 성공 예측 - Solution v6 (Seed Ens. x TabNet)
+============================================================
+
+[1] 데이터 로드 및 전처리
+  Train (256351, 69)  Test (90067, 68)  양성율 0.258
+
+[2] 피처 엔지니어링 (v4)
+  피처 수: 122
+
+[3] 트리 모델 학습 (3 seeds x 3 = 9개)
+  LGB_s42  OOF AUC: 0.73851
+  XGB_s42  OOF AUC: 0.73948
+  CAT_s42  OOF AUC: 0.73948
+  LGB_s777  OOF AUC: 0.73885
+  XGB_s777  OOF AUC: 0.73946
+  CAT_s777  OOF AUC: 0.73967
+  LGB_s2024  OOF AUC: 0.73847
+  XGB_s2024  OOF AUC: 0.73957
+  CAT_s2024  OOF AUC: 0.73975
+
+  트리 단순 평균 OOF AUC: 0.74017
+
+[4] TabNet 학습 (2 seeds, device=cuda)
+Stop training because you reached max_epochs = 150 with best_epoch = 148 and best_val_auc = 0.73132
+
+Early stopping occurred at epoch 120 with best_epoch = 100 and best_val_auc = 0.73409
+Stop training because you reached max_epochs = 150 with best_epoch = 149 and best_val_auc = 0.72783
+
+Early stopping occurred at epoch 136 with best_epoch = 116 and best_val_auc = 0.72824
+Stop training because you reached max_epochs = 150 with best_epoch = 144 and best_val_auc = 0.73168
+  TAB_s42  OOF AUC: 0.73061
+
+Early stopping occurred at epoch 94 with best_epoch = 74 and best_val_auc = 0.72644
+
+Early stopping occurred at epoch 98 with best_epoch = 78 and best_val_auc = 0.73178
+Stop training because you reached max_epochs = 150 with best_epoch = 136 and best_val_auc = 0.72806
+Stop training because you reached max_epochs = 150 with best_epoch = 149 and best_val_auc = 0.72829
+Stop training because you reached max_epochs = 150 with best_epoch = 149 and best_val_auc = 0.73136
+  TAB_s777  OOF AUC: 0.72914
+  TAB 평균 OOF AUC: 0.73338
+
+[5] 4-class 최적 가중치 탐색 (Optuna 500 trials)
+  최적 가중치: LGB=0.107 XGB=0.383 CAT=0.505 TAB=0.004
+  4-class 최적 블렌드 OOF AUC: 0.74023
+
+[6] Meta-LR 학습 (전체 11개 OOF)
+  Meta-LR (11 OOF) OOF AUC: 0.73989
+
+[7] 최종 블렌딩 (Optuna 300 trials)
+  최종 블렌딩: Opt=1.000  Meta-LR=0.000
+  스태킹 최종 OOF AUC: 0.74023
+
+============================================================
+  성능 비교
+============================================================
+  스태킹 최종                               0.74023  ████████████████████  ★
+  4-class 최적 블렌드                       0.74023  ███████████████████
+  트리 단순 평균                             0.74017  ███████████████████
+  Meta-LR (11 OOF)                     0.73989  ███████████████████
+  CAT_s2024                            0.73975  ███████████████████
+  CAT_s777                             0.73967  ███████████████████
+  XGB_s2024                            0.73957  ███████████████████
+  XGB_s42                              0.73948  ███████████████████
+  CAT_s42                              0.73948  ███████████████████
+  XGB_s777                             0.73946  ███████████████████
+  LGB_s777                             0.73885  ██████████████████
+  LGB_s42                              0.73851  ██████████████████
+  LGB_s2024                            0.73847  ██████████████████
+  TAB 평균                               0.73338  █████████████
+  TAB_s42                              0.73061  ██████████
+  TAB_s777                             0.72914  █████████
+============================================================
+
+  제출 파일 저장: submission_v6.csv
+  예측 범위: [0.0009, 0.7524]
+============================================================
