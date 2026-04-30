@@ -4,17 +4,16 @@ __pycache__/
 
 # Jupyter Notebook
 .ipynb_checkpoints/
-.ipynb
 
 # Local data files
-data/
 
 # Model
 models/
-*.pkl
 *.pt
 *.pth
 
 # virtual environment
 .venv/
 .env
+
+.vscode
